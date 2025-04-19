@@ -9,7 +9,7 @@ import java.util.List;
 public class Doctor {
 
     @Id
-    private long id;
+    private Long id;
     private String name;
     private String Specialisation;
     private String eMail;
@@ -30,7 +30,9 @@ public class Doctor {
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
     //Getters
-    public long getId() {return id;}
+    public Long getId() {return id;}
+
+    public int getIdAsInt(){return Math.toIntExact(id);}
 
     public String getName() {return name;}
 
@@ -39,4 +41,6 @@ public class Doctor {
     public String geteMail() {return eMail;}
 
     public String getPhoneNumber() {return phoneNumber;}
+
+    public List<Appointments> getAppointmentsList() {return appointmentsList;}
 }
