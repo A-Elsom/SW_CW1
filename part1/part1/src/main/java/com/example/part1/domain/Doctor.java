@@ -32,8 +32,6 @@ public class Doctor {
     //Getters
     public Long getId() {return id;}
 
-    public int getIdAsInt(){return Math.toIntExact(id);}
-
     public String getName() {return name;}
 
     public String getSpecialisation() {return Specialisation;}

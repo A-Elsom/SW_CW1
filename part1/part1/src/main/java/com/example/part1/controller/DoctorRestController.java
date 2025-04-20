@@ -3,6 +3,7 @@ package com.example.part1.controller;
 import com.example.part1.domain.Appointments;
 import com.example.part1.domain.Doctor;
 import com.example.part1.repo.DoctorRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import java.util.List;
 
 @RestController
 public class DoctorRestController {
-    DoctorRepo repo;
+
+    @Autowired
+    private DoctorRepo repo;
 
     //endpoint #8, Get list of all doctors
     @GetMapping("/doctors")
@@ -30,10 +33,9 @@ public class DoctorRestController {
     @PostMapping("/doctors")
     public ResponseEntity<?> createDoctor(@RequestBody Doctor doctor, UriComponentsBuilder ucBuilder){
 
-        if(repo.existsById(doctor.getIdAsInt())){
+        if(repo.existsById(doctor.getId())){
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
-
         repo.save(doctor);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/doctors/{id}").buildAndExpand(doctor.getId()).toUri());
@@ -43,8 +45,7 @@ public class DoctorRestController {
     //endpoint 10, retrieve specific endpoint by ID
     @GetMapping("/doctors/{id}")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable Long id){
-        int intId = Math.toIntExact(id);
-        Doctor doctor = repo.findById(intId).orElse(null);
+        Doctor doctor = repo.findById(id).orElse(null);
         if (doctor == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -52,10 +53,9 @@ public class DoctorRestController {
     }
 
     //endpoint 11, Update a specific doctor by ID
-    @PutMapping("/doctors/id")
+    @PutMapping("/doctors/{id}")
     public ResponseEntity<?> updateDoctor(@PathVariable("id") Long id, @RequestBody Doctor doctor){
-        int intId = Math.toIntExact(id);
-        Doctor currentDoc = repo.findById(intId).orElse(null);
+        Doctor currentDoc = repo.findById(id).orElse(null);
         if (currentDoc == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -70,8 +70,7 @@ public class DoctorRestController {
     //endpoint 12, Delete specific doctor by ID
     @DeleteMapping("/doctors/{id}")
     public ResponseEntity<?> deleteDoctor(@PathVariable("id") Long id){
-        int intId = Math.toIntExact(id);
-        Doctor doctor = repo.findById(intId).orElse(null);
+        Doctor doctor = repo.findById(id).orElse(null);
         if (doctor == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -82,8 +81,7 @@ public class DoctorRestController {
     //endpoint 13, getting a List of all appointments for a specific doctor
     @GetMapping("/doctors/{id}/appointments")
     public ResponseEntity<List<Appointments>> listAppointments(@PathVariable("id") Long id){
-        int intId = Math.toIntExact(id);
-        Doctor doctor = repo.findById(intId).orElse(null);
+        Doctor doctor = repo.findById(id).orElse(null);
         if (doctor == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
