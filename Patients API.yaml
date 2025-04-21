@@ -140,9 +140,36 @@ paths:
           content:
             application/json:
               schema:
-                type: array $ref '#/components/schemas/Appointment'
+                type: array $ref '#/components/schemas/Appointments'
         "204":
           description: No Appointments to show
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInfo'
+  /api/patients/{id}/medical-records:
+    get:
+      tags:
+      - patients
+      - records
+      summary: Get the medical records for Patient by id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK response
+          content:
+            application/json:
+              schema:
+                type: array $ref '#/components/schemas/Record'
+        "204":
+          description: No Medical Records to show
         "400":
           description: Bad request
           content:
@@ -157,7 +184,7 @@ components:
         message:
           type: string
           default: Error message
-    Doctor:
+    Patient:
       type: object
       properties:
         id:
