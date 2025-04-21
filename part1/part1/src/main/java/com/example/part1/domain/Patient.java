@@ -1,7 +1,11 @@
 package com.example.part1.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Patient {
@@ -11,6 +15,17 @@ public class Patient {
     private String email;
     private String phoneNumber;
     private String address;
+
+    @OneToMany(orphanRemoval= true, cascade = CascadeType.ALL)
+    private List<Appointments> appointmentList;
+
+    public List<Appointments> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointments> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
 
     public String getAddress() {
         return address;
