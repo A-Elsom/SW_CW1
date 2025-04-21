@@ -51,12 +51,11 @@ public class AppointmentRestController {
 
     //retrieve a specific appointment by ID (endpoint #16)
     @GetMapping("/appointments/{id}")
-    public ResponseEntity<Appointments> getAppointmentById(@PathVariable("Id") long Id){
+    public ResponseEntity<Appointments> getAppointmentById(@PathVariable("id") long Id){
         Appointments appointment = repo.findById(Id).orElse(null);
         if(appointment == null){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        repo.delete(appointment);
         return new ResponseEntity<Appointments>(appointment, HttpStatus.OK);
     }
 
@@ -78,7 +77,7 @@ public class AppointmentRestController {
 
     //delete a specific appointment by ID (endpoint #18)
     @DeleteMapping("/appointments/{id}")
-    public ResponseEntity<?> deleteAppointment(@PathVariable("Id") long id){
+    public ResponseEntity<?> deleteAppointment(@PathVariable("id") long id){
         Appointments removeAppointment = repo.findById(id).orElse(null);
         if(removeAppointment == null){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -87,6 +86,7 @@ public class AppointmentRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //get the medical record for the specified appointment (Endpoint #19)
     @GetMapping("/appointments/{id}/medical-record")
     public ResponseEntity<?> getMedicalRecord(@PathVariable("id") long id) {
         Appointments appointment = repo.findById(id).orElse(null);
