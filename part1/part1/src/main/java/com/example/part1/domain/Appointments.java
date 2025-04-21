@@ -3,10 +3,7 @@ package com.example.part1.domain;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Appointments {
@@ -22,6 +19,17 @@ public class Appointments {
 
     @ManyToOne
     private Patient patient;
+
+    @OneToOne
+    private Record record;
+
+    public Record getRecord() {
+        return record;
+    }
+
+    public void setRecord(Record record) {
+        this.record = record;
+    }
 
     public Doctor getDoctor() {
         return doctor;
