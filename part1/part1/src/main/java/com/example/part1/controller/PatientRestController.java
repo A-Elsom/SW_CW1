@@ -45,7 +45,7 @@ public class PatientRestController {
 
     //retrieve a specific patient by ID (endpoint #3)
     @GetMapping("/patients/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable("Id") long Id){
+    public ResponseEntity<Patient> getPatientById(@PathVariable("id") long Id){
         Patient patient = repo.findById(Id).orElse(null);
         if(patient == null){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -64,8 +64,8 @@ public class PatientRestController {
         currentPatient.setAddress(patient.getAddress());
         currentPatient.setPhoneNumber(patient.getPhoneNumber());
         currentPatient.setEmail(patient.getEmail());
-        repo.save(patient);
-        return new ResponseEntity<Patient>(patient, HttpStatus.OK);
+        repo.save(currentPatient);
+        return new ResponseEntity<Patient>(currentPatient, HttpStatus.OK);
     }
 
     //delete a specific patient by ID (endpoint #5)
@@ -75,8 +75,11 @@ public class PatientRestController {
         if(removePatient == null){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        repo.delete(removePatient);
-        return new ResponseEntity<>(HttpStatus.OK);
+        repo.DeleteById(id);
+        if(!repo.existsById(id)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
 
     //List All appointments for a specific patient (Endpoint #6)

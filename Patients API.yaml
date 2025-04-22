@@ -50,7 +50,7 @@ paths:
           description: Created Patient
         "409":
           description: Patient already exists
-  /api/Patients/{id}:
+  /api/patients/{id}:
     get:
       tags:
       - patients
