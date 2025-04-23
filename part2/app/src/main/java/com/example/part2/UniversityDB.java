@@ -25,6 +25,19 @@ public abstract class UniversityDB extends RoomDatabase {
 
     private static Context contextT;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriteExecutor.execute(() -> {
+                CourseDao courseDao = INSTANCE.courseDao();
+                courseDao.deleteAll();
+                Course course = new Course("CO2124", "SoftArch", "Someone");
+                courseDao.insert(course);
+                Toast.makeText(contextT, "added Course", Toast.LENGTH_SHORT).show();
+            });
+        }
+    };
     static UniversityDB getDatabase(final Context context){
         contextT = context;
         if(INSTANCE == null){
@@ -37,16 +50,5 @@ public abstract class UniversityDB extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            databaseWriteExecutor.execute(() -> {
-                CourseDao courseDao = INSTANCE.courseDao();
-                Course course = new Course("CO2124", "SoftArch", "Someone");
-                courseDao.insert(course);
-                Toast.makeText(contextT, "added Course", Toast.LENGTH_SHORT).show();
-            });
-        }
-    };
+
 }

@@ -20,6 +20,7 @@ import com.example.part2.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
-        //courseViewModel.deleteAll();
-        courseViewModel.insert(new Course("co2124", "none", "somebody"));
+
+        //courseViewModel.insert(new Course("co2124", "none", "somebody"));
         courseViewModel.getAllCourses().observe(this, courses -> {
             adapter.submitList(courses);
         });
@@ -72,5 +73,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void onClickEvent(View view){
+        //go to course page
+        Toast.makeText(this, "go to course page", Toast.LENGTH_SHORT).show();
     }
 }
