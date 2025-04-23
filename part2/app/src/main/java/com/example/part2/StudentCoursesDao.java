@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.MapColumn;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
@@ -21,10 +22,10 @@ public interface StudentCoursesDao {
     LiveData<List<StudentCourses>> getStudentCoursesList();
 
     @Transaction
-    @Query("SELECT courses.code,courses.lecturer_Name,courses.name FROM courses, student_courses WHERE courses.courseId = course_id  & student_id = :studentId")
-    LiveData<List<StudentCourses>> getStudentsEnrolledCourses(long studentId);
+    @Query("SELECT courseId FROM courses, student_courses WHERE courses.courseId = course_id  & student_id = :studentId")
+    List<Long> getStudentsEnrolledCourses(long studentId);
 
     @Transaction
-    @Query("SELECT students.name, students.username FROM students, student_courses WHERE students.studentId = student_id  & course_id = :courseId")
-    LiveData<List<StudentCourses>> getCourseEnrolledStudents(long courseId);
+    @Query("SELECT studentId FROM students, student_courses WHERE students.studentId = student_id  & course_id = :courseId")
+    List<Long> getCourseEnrolledStudents(long courseId);
 }
