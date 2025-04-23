@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+       // setSupportActionBar(binding.toolbar);
 
 //        NavController navController = Navigation.findNavController(this, R.id.recyclerview);
 //        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
+        //courseViewModel.deleteAll();
+        courseViewModel.insert(new Course("co2124", "none", "somebody"));
         courseViewModel.getAllCourses().observe(this, courses -> {
             adapter.submitList(courses);
         });

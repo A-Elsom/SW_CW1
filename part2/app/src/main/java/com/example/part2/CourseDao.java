@@ -18,4 +18,7 @@ public interface CourseDao {
 
     @Delete
     void delete(Course course);
+
+    @Query("DELETE FROM courses")
+    void deleteAll();
 }

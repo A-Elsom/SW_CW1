@@ -1,11 +1,15 @@
 package com.example.part2;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.io.Console;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,17 +22,31 @@ public abstract class UniversityDB extends RoomDatabase {
 
     private static volatile UniversityDB INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
+
+    private static Context contextT;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     static UniversityDB getDatabase(final Context context){
+        contextT = context;
         if(INSTANCE == null){
             synchronized (UniversityDB.class){
                 if(INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), UniversityDB.class, "uni_DB").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), UniversityDB.class, "uni_DB").addCallback(sRoomDatabaseCallback).build();
                 }
             }
         }
         return INSTANCE;
     }
 
-
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriteExecutor.execute(() -> {
+                CourseDao courseDao = INSTANCE.courseDao();
+                Course course = new Course("CO2124", "SoftArch", "Someone");
+                courseDao.insert(course);
+                Toast.makeText(contextT, "added Course", Toast.LENGTH_SHORT).show();
+            });
+        }
+    };
 }

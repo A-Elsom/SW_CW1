@@ -28,4 +28,10 @@ public class CourseRepository {
             courseDao.delete(course);
         });
     }
+
+    void deleteAll(){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            courseDao.deleteAll();
+        });
+    }
 }
