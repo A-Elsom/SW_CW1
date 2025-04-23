@@ -31,4 +31,12 @@ public class StudentCoursesRepository {
             studentCoursesDao.delete(studentCourse);
         });
     }
+
+    List<Long> getStudentsEnrolledCourses(long studentId){
+        return studentCoursesDao.getStudentsEnrolledCourses(studentId);
+    }
+
+    List<Long> getCourseEnrolledStudents(long courseId){
+        return studentCoursesDao.getCourseEnrolledStudents(courseId);
+    }
 }

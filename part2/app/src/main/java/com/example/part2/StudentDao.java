@@ -13,7 +13,7 @@ public interface StudentDao {
     @Insert
     void insert(Student student);
 
-    @Query("SELECT * FROM students ORDER BY id DESC")
+    @Query("SELECT * FROM students ORDER BY studentId DESC")
     LiveData<List<Student>> getStudentList();
 
     @Delete
