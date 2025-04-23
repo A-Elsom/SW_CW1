@@ -9,7 +9,7 @@ import java.util.List;
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int courseId;
 
     @ColumnInfo(name = "code")
     private String courseCode;

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity(tableName = "students")
 public class Student {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int studentId;
 
     @ColumnInfo(name = "name")
     private String name;
