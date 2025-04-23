@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/courseButton"
         style="@style/item_title"
+        android:text="@+id/courseButton_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light" />
+        android:background="@android:color/holo_blue_light"
+
+            />
 </LinearLayout>

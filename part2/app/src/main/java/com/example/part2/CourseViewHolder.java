@@ -3,20 +3,21 @@ package com.example.part2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseViewHolder extends RecyclerView.ViewHolder {
-    private final TextView courseTextView;
+    private final Button coursebutton;
 
     private CourseViewHolder(View CourseView){
         super(CourseView);
-        courseTextView = CourseView.findViewById(R.id.textView);
+        coursebutton = CourseView.findViewById(R.id.courseButton);
     }
 
     public void bind(String text){
-        courseTextView.setText(text);
+        coursebutton.setText(text);
     }
 
     static CourseViewHolder Create(ViewGroup Parent){
