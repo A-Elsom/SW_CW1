@@ -2,6 +2,7 @@ package com.example.part2;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -15,6 +16,6 @@ public interface CourseDao {
     @Query("SELECT * FROM courses ORDER BY id DESC")
     LiveData<List<Course>> getCourseList();
 
-    @Query("DELETE FROM courses")
-    void deleteCourse();
+    @Delete
+    void delete(Course course);
 }
