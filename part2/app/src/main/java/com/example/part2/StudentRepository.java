@@ -20,5 +20,16 @@ public class StudentRepository {
         return allStudents;
     }
 
+    void insert(Student student){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            studentDao.insert(student);
+        });
+    }
+
+    void delete(Student student){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            studentDao.delete(student);
+        });
+    }
 
 }
