@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
@@ -17,4 +19,5 @@ public class Course {
 
     @ColumnInfo(name = "lecturer_Name")
     private String lecturerName;
+
 }

@@ -18,4 +18,5 @@ public interface StudentDao {
 
     @Delete
     void delete(Student student);
+
 }

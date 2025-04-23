@@ -9,10 +9,12 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Course.class, Student.class}, version = 1, exportSchema = false)
+@Database(entities = {Course.class, Student.class, StudentCourses.class}, version = 1, exportSchema = false)
 public abstract class UniversityDB extends RoomDatabase {
     public abstract CourseDao courseDao();
     public abstract StudentDao studentDao();
+
+    public abstract StudentCoursesDao studentCoursesDao();
 
     private static volatile UniversityDB INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -27,4 +29,6 @@ public abstract class UniversityDB extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+
 }
