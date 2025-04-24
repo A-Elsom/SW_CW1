@@ -9,8 +9,14 @@ import androidx.recyclerview.widget.ListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 public class CourseListAdapter extends ListAdapter<Course, CourseViewHolder> {
-    public CourseListAdapter(@NotNull DiffUtil.ItemCallback<Course> diffCallback){
+    public interface LongClickListener{
+        void onLongClick(Course course);
+    }
+
+    private final LongClickListener longClickListener;
+    public CourseListAdapter(@NotNull DiffUtil.ItemCallback<Course> diffCallback, LongClickListener longClickListener){
         super(diffCallback);
+        this.longClickListener = longClickListener;
     }
 
     @Override
@@ -23,6 +29,11 @@ public class CourseListAdapter extends ListAdapter<Course, CourseViewHolder> {
         Course current = getItem(position);
         holder.bindId(current.getCourseId());
         holder.bind("|Course Code : " + current.getCourseCode() + "| |Course Name : " + current.getCourseName() + "| |Lecturer : " + current.getLecturerName());
+
+        holder.getCoursebutton().setOnLongClickListener(v -> {
+            longClickListener.onLongClick(current);
+            return true;
+        });
     }
 
     static class CourseDiff extends DiffUtil.ItemCallback<Course>{

@@ -25,7 +25,7 @@ public class CourseRepository {
         });
     }
 
-    void delete(Course course){
+    public void delete(Course course){
         UniversityDB.databaseWriteExecutor.execute(() -> {
             courseDao.delete(course);
         });

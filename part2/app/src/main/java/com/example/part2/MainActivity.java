@@ -61,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final CourseListAdapter adapter = new CourseListAdapter(new CourseListAdapter.CourseDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
+        final CourseListAdapter adapter = new CourseListAdapter(new CourseListAdapter.CourseDiff(), course -> {courseViewModel.delete(course); Toast.makeText(this, "Course deleted: " + course.getCourseName(), Toast.LENGTH_SHORT).show();});
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //courseViewModel.insert(new Course("co2124", "none", "somebody"));
         courseViewModel.getAllCourses().observe(this, courses -> {

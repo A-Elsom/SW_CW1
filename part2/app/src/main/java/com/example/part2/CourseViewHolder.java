@@ -16,6 +16,10 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
         coursebutton = CourseView.findViewById(R.id.courseButton);
     }
 
+    public Button getCoursebutton() {
+        return coursebutton;
+    }
+
     public void bind(String text){
         coursebutton.setText(text);
     }
