@@ -18,4 +18,10 @@ public interface CourseDao {
 
     @Delete
     void delete(Course course);
+
+    @Query("DELETE FROM courses")
+    void deleteAll();
+
+    @Query("SELECT * FROM courses WHERE courseId = :Id")
+    LiveData<Course> getCourseById(int Id);
 }

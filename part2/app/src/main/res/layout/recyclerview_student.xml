@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <Button
-        android:id="@+id/courseButton"
+        android:id="@+id/studentButton"
         style="@style/item_title"
         android:text="@+id/courseButton_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_light"
-        android:onClick="onClickEventCourse" />
+        android:onClick="onClickEventStudent" />
 </LinearLayout>

@@ -19,6 +19,7 @@ public class StudentRepository {
     LiveData<List<Student>> getAllStudents(){
         return allStudents;
     }
+    LiveData<Student> getStudentById(int id) {return studentDao.getStudentById(id);}
 
     void insert(Student student){
         UniversityDB.databaseWriteExecutor.execute(() -> {

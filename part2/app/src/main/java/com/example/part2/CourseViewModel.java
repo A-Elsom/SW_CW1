@@ -23,4 +23,8 @@ public class CourseViewModel extends AndroidViewModel {
     public void insert(Course course) {repo.insert(course);}
 
     public void delete(Course course) {repo.delete(course);}
+
+    public void deleteAll() {repo.deleteAll();}
+
+    public LiveData<Course> getCourseById(int id) {return repo.getCourseById(id);}
 }

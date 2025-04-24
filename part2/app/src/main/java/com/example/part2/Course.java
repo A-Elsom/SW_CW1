@@ -13,7 +13,7 @@ public class Course {
 
 
     @PrimaryKey(autoGenerate = true)
-    private long courseId;
+    private int courseId;
     @ColumnInfo(name = "code")
     private String courseCode;
 
@@ -29,11 +29,11 @@ public class Course {
         this.lecturerName = lecturerName;
     }
 
-    public void setCourseId(long courseId) {
+    public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
 
-    public long getCourseId() {
+    public int getCourseId() {
         return courseId;
     }
 

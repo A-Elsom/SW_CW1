@@ -17,7 +17,7 @@ public class Student {
 
 
     @PrimaryKey(autoGenerate = true)
-    private long studentId;
+    private int studentId;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -34,11 +34,11 @@ public class Student {
         this.UserName = UserName;
     }
 
-    public void setStudentId(long studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
-    public long getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 

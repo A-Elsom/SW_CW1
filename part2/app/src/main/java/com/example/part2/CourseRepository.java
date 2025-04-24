@@ -17,15 +17,23 @@ public class CourseRepository {
 
     LiveData<List<Course>> getAllCourses(){return allCourses;}
 
+    LiveData<Course> getCourseById(int id) {return courseDao.getCourseById(id);}
+
     void insert(Course course){
         UniversityDB.databaseWriteExecutor.execute(() -> {
             courseDao.insert(course);
         });
     }
 
-    void delete(Course course){
+    public void delete(Course course){
         UniversityDB.databaseWriteExecutor.execute(() -> {
             courseDao.delete(course);
+        });
+    }
+
+    void deleteAll(){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            courseDao.deleteAll();
         });
     }
 }
