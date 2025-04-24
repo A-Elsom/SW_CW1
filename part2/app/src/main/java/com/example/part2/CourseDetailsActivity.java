@@ -1,7 +1,10 @@
 package com.example.part2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +55,16 @@ public class CourseDetailsActivity extends AppCompatActivity {
         });
     }
 
-    public void onCloseEvent(){
+    public void onCloseEvent(View view){
         finish();
+    }
+
+    public void onClickEventStudent(View view){
+        //go to course page
+        Button b = (Button)view;
+        //Toast.makeText(this, String.valueOf(b.getId()), Toast.LENGTH_SHORT).show();
+        Intent studentIntent = new Intent(this, StudentDetailsActivity.class);
+        studentIntent.putExtra("thisStudent", b.getId());
+        startActivity(studentIntent);
     }
 }

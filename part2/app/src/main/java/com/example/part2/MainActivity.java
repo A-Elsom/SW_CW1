@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void onClickEvent(View view){
+    public void onClickEventCourse(View view){
         //go to course page
         Button b = (Button)view;
         //Toast.makeText(this, String.valueOf(b.getId()), Toast.LENGTH_SHORT).show();

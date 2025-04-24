@@ -19,4 +19,7 @@ public interface StudentDao {
     @Delete
     void delete(Student student);
 
+    @Query("SELECT * FROM students WHERE studentId = :Id")
+    LiveData<Student> getStudentById(int Id);
+
 }
