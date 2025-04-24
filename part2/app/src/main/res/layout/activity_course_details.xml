@@ -71,4 +71,20 @@
         app:layout_constraintVertical_bias="0.7"
         tools:listitem="@layout/recyclerview_student" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/BackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="642dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        android:onClick="onCloseEvent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

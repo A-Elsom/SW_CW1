@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickEvent(View view){
         //go to course page
         Button b = (Button)view;
-        Toast.makeText(this, String.valueOf(b.getId()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, String.valueOf(b.getId()), Toast.LENGTH_SHORT).show();
         Intent courseIntent = new Intent(this, CourseDetailsActivity.class);
         courseIntent.putExtra("thisCourse", b.getId());
         startActivity(courseIntent);

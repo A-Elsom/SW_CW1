@@ -50,6 +50,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
             Log.println(Log.INFO, "numOfStudents", String.valueOf(students.size()));
             adapter.submitList(students);
         });
+    }
 
+    public void onCloseEvent(){
+        finish();
     }
 }
