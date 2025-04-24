@@ -57,4 +57,18 @@
         android:textSize="20sp"
         android:textColor="@color/white"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_students"
+        android:layout_width="411dp"
+        android:layout_height="396dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="264dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        tools:listitem="@layout/recyclerview_student" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

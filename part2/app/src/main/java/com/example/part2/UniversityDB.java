@@ -34,7 +34,13 @@ public abstract class UniversityDB extends RoomDatabase {
                 courseDao.deleteAll();
                 Course course = new Course("CO2124", "SoftArch", "Someone");
                 courseDao.insert(course);
-                Toast.makeText(contextT, "added Course", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(contextT, "added Course", Toast.LENGTH_SHORT).show();
+                StudentDao studentDao = INSTANCE.studentDao();
+                Student student = new Student("Dave","dave@email.com", "Dave01");
+                studentDao.insert(student);
+                StudentCoursesDao studentCoursesDao = INSTANCE.studentCoursesDao();
+                StudentCourses studentCourses = new StudentCourses(1, 1);
+                studentCoursesDao.insert(studentCourses);
             });
         }
     };

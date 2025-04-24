@@ -32,11 +32,11 @@ public class StudentCoursesRepository {
         });
     }
 
-    List<Long> getStudentsEnrolledCourses(long studentId){
+   LiveData<List<Course>> getStudentsEnrolledCourses(int studentId){
         return studentCoursesDao.getStudentsEnrolledCourses(studentId);
     }
 
-    List<Long> getCourseEnrolledStudents(long courseId){
+    LiveData<List<Student>> getCourseEnrolledStudents(int courseId){
         return studentCoursesDao.getCourseEnrolledStudents(courseId);
     }
 }
