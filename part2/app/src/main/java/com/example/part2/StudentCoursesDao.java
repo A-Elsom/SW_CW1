@@ -22,11 +22,11 @@ public interface StudentCoursesDao {
     LiveData<List<StudentCourses>> getStudentCoursesList();
 
     @Transaction
-    @Query("SELECT courses.* FROM courses, student_courses WHERE courses.courseId = course_id  & student_id = :studentId")
+    @Query("SELECT courses.* FROM courses, student_courses WHERE courses.courseId = course_id  AND student_id = :studentId")
     LiveData<List<Course>> getStudentsEnrolledCourses(int studentId);
 
     @Transaction
-    @Query("SELECT students.* FROM students, student_courses WHERE students.studentId = student_id  & course_id = :courseId")
+    @Query("SELECT students.* FROM students, student_courses WHERE students.studentId = student_id  AND course_id = :courseId")
     LiveData<List<Student>> getCourseEnrolledStudents(int courseId);
 
     @Query("DELETE FROM student_courses WHERE course_id = :courseId")
