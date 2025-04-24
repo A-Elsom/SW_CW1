@@ -21,6 +21,7 @@ public class CourseListAdapter extends ListAdapter<Course, CourseViewHolder> {
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position){
         Course current = getItem(position);
+        holder.bindId(current.getCourseId());
         holder.bind("|Course Code : " + current.getCourseCode() + "| |Course Name : " + current.getCourseName() + "| |Lecturer : " + current.getLecturerName());
     }
 

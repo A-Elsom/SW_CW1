@@ -17,6 +17,8 @@ public class CourseRepository {
 
     LiveData<List<Course>> getAllCourses(){return allCourses;}
 
+    LiveData<Course> getCourseById(int id) {return courseDao.getCourseById(id);}
+
     void insert(Course course){
         UniversityDB.databaseWriteExecutor.execute(() -> {
             courseDao.insert(course);

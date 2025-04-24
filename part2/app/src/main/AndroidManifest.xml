@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.part2.CreateCourseActivity"/>
+        <activity android:name="com.example.part2.CourseDetailsActivity"/>
     </application>
 
 </manifest>

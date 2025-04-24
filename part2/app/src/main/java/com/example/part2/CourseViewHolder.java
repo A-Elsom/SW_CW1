@@ -20,6 +20,8 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
         coursebutton.setText(text);
     }
 
+    public void bindId(int id) {coursebutton.setId(id);}
+
     static CourseViewHolder Create(ViewGroup Parent){
         View view = LayoutInflater.from(Parent.getContext()).inflate(R.layout.recyclerview_course, Parent, false);
         return new CourseViewHolder(view);
