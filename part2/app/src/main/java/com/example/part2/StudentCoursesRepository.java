@@ -45,4 +45,10 @@ public class StudentCoursesRepository {
             studentCoursesDao.deleteByCourses(courseId);
         });
     }
+
+    void deleteByStudentForCourse(int studentId, int courseId){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            studentCoursesDao.deleteByStudent(studentId, courseId);
+        });
+    }
 }

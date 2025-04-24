@@ -1,5 +1,6 @@
 package com.example.part2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,11 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Update;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,7 +49,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             CourseNameView.setText(nText);
             CourseLecturerView.setText(lText);
         });
-
+        //show students
         FloatingActionButton asfab = findViewById(R.id.addStudentfab);
         asfab.setOnClickListener(view -> {
             Intent intent = new Intent(CourseDetailsActivity.this, AddStudentActivity.class);
@@ -55,7 +58,31 @@ public class CourseDetailsActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_students);
-        StudentListAdapter adapter = new StudentListAdapter(new StudentListAdapter.StudentDiff());
+        StudentListAdapter adapter = new StudentListAdapter(new StudentListAdapter.StudentDiff(), student -> {
+            //show Dialogue
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Choose");
+            builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    Intent UpdateIntent = new Intent(CourseDetailsActivity.this, EditStudentActivity.class);
+                    UpdateIntent.putExtra("StudentId", student.getStudentId());
+                    startActivity(UpdateIntent);
+                }
+            });
+
+            builder.setNegativeButton("Remove", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    studentViewModel.deleteByStudentForCourse(student.getStudentId(), getIntent().getExtras().getInt("thisCourse"));
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        });
+
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -90,7 +117,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void onCloseEvent(View view){
+    public void onCloseEvent(View view) {
         finish();
     }
 

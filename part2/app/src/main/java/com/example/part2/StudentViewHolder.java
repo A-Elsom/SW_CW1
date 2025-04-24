@@ -21,6 +21,9 @@ public class StudentViewHolder extends RecyclerView.ViewHolder {
 
     public void bindId(int id) {studentbutton.setId(id);}
 
+    public Button getStudentbutton(){
+        return studentbutton;
+    }
     static StudentViewHolder Create(ViewGroup Parent){
         View view = LayoutInflater.from(Parent.getContext()).inflate(R.layout.recyclerview_student, Parent, false);
         return new StudentViewHolder(view);

@@ -34,6 +34,18 @@ public class Student {
         this.UserName = UserName;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }

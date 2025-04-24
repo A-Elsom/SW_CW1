@@ -26,6 +26,7 @@
         <activity android:name="com.example.part2.CourseDetailsActivity"/>
         <activity android:name="com.example.part2.AddStudentActivity"/>
         <activity android:name="com.example.part2.StudentDetailsActivity"/>
+        <activity android:name="com.example.part2.EditStudentActivity"/>
     </application>
 
 </manifest>

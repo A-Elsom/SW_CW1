@@ -31,4 +31,7 @@ public interface StudentCoursesDao {
 
     @Query("DELETE FROM student_courses WHERE course_id = :courseId")
     void deleteByCourses(int courseId);
+
+    @Query("DELETE FROM student_courses WHERE student_id = :studentId & course_id = :courseId")
+    void deleteByStudent(int studentId, int courseId);
 }

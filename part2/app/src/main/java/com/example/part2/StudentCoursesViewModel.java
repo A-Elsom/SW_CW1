@@ -25,6 +25,8 @@ public class StudentCoursesViewModel extends AndroidViewModel{
 
         public void deleteByCourses(int CourseId) {repo.deleteByCourses(CourseId);}
 
+        public void deleteByStudentForCourse(int StudentId, int CourseId) {repo.deleteByStudentForCourse(StudentId,CourseId);}
+
         public void insert(StudentCourses studentCourse) {repo.insert(studentCourse);}
 
         public void delete(StudentCourses studentCourse) {repo.delete(studentCourse);}
