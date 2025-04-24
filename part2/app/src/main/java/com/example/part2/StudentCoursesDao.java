@@ -28,4 +28,7 @@ public interface StudentCoursesDao {
     @Transaction
     @Query("SELECT students.* FROM students, student_courses WHERE students.studentId = student_id  & course_id = :courseId")
     LiveData<List<Student>> getCourseEnrolledStudents(int courseId);
+
+    @Query("DELETE FROM student_courses WHERE course_id = :courseId")
+    void deleteByCourses(int courseId);
 }

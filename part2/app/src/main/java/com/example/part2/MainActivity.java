@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-
+        StudentCoursesViewModel studentCoursesViewModel = new ViewModelProvider(this).get(StudentCoursesViewModel.class);
         CourseViewModel courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
-        final CourseListAdapter adapter = new CourseListAdapter(new CourseListAdapter.CourseDiff(), course -> {courseViewModel.delete(course); Toast.makeText(this, "Course deleted: " + course.getCourseName(), Toast.LENGTH_SHORT).show();});
+        final CourseListAdapter adapter = new CourseListAdapter(new CourseListAdapter.CourseDiff(), course -> {courseViewModel.delete(course); studentCoursesViewModel.deleteByCourses(course.getCourseId()); Toast.makeText(this, "Course deleted: " + course.getCourseName(), Toast.LENGTH_SHORT).show();});
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
