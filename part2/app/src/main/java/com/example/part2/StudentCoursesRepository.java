@@ -39,4 +39,10 @@ public class StudentCoursesRepository {
     LiveData<List<Student>> getCourseEnrolledStudents(int courseId){
         return studentCoursesDao.getCourseEnrolledStudents(courseId);
     }
+
+    void deleteByCourses(int courseId){
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            studentCoursesDao.deleteByCourses(courseId);
+        });
+    }
 }
