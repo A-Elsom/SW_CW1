@@ -31,7 +31,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Patient'
         "204":
-          description: no Hotels To Show
+          description: no patients To Show
         "400":
           description: Bad request
           content:
@@ -147,7 +147,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Appointment'
         "204":
-          description: No Appointments to show
+          description: no Appointments to show
         "400":
           description: Bad request
           content:
@@ -200,7 +200,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Doctor'
         "204":
-          description: no Hotels To Show
+          description: no Doctors To Show
         "400":
           description: Bad request
           content:
@@ -316,7 +316,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Appointment'
         "204":
-          description: No Appointments to show
+          description: no Appointments to show
         "400":
           description: Bad request
           content:
