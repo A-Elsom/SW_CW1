@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -13,10 +14,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.w3c.dom.Text;
 
 public class CourseDetailsActivity extends AppCompatActivity {
-
+    public static final int ADD_STUDENT_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -44,6 +47,13 @@ public class CourseDetailsActivity extends AppCompatActivity {
             CourseLecturerView.setText(lText);
         });
 
+        FloatingActionButton asfab = findViewById(R.id.addStudentfab);
+        asfab.setOnClickListener(view -> {
+            Intent intent = new Intent(CourseDetailsActivity.this, AddStudentActivity.class);
+            intent.putExtra("courseID", getIntent().getExtras().getInt("thisCourse"));
+            startActivityForResult(intent, ADD_STUDENT_REQUEST_CODE);
+        });
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview_students);
         StudentListAdapter adapter = new StudentListAdapter(new StudentListAdapter.StudentDiff());
         recyclerView.setAdapter(adapter);
@@ -53,6 +63,31 @@ public class CourseDetailsActivity extends AppCompatActivity {
             Log.println(Log.INFO, "numOfStudents", String.valueOf(students.size()));
             adapter.submitList(students);
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_STUDENT_REQUEST_CODE && resultCode == RESULT_OK) {
+            String studentName = data.getStringExtra(AddStudentActivity.EXTRA_STUDENT_NAME);
+            String studentEmail = data.getStringExtra(AddStudentActivity.EXTRA_STUDENT_EMAIL);
+            String studentMatricNo = data.getStringExtra(AddStudentActivity.EXTRA_STUDENT_MATRIC_NO);
+
+            Student student = new Student(studentName, studentEmail, studentMatricNo);
+            StudentViewModel studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+            studentViewModel.insertAndGetId(student).observe(this, studentId -> {
+                if (studentId != null) {
+                    student.setStudentId(studentId.intValue());
+
+                    StudentCourses studentCourse = new StudentCourses(student.getStudentId(), getIntent().getExtras().getInt("thisCourse"));
+
+                    StudentCoursesViewModel svm = new ViewModelProvider(CourseDetailsActivity.this).get(StudentCoursesViewModel.class);
+                    svm.insert(studentCourse);
+                }
+            });
+        } else {
+            Toast.makeText(getApplicationContext(), "This action Failed due to an empty field", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onCloseEvent(View view){

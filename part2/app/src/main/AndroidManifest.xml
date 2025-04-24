@@ -24,6 +24,7 @@
         </activity>
         <activity android:name="com.example.part2.CreateCourseActivity"/>
         <activity android:name="com.example.part2.CourseDetailsActivity"/>
+        <activity android:name="com.example.part2.AddStudentActivity"/>
         <activity android:name="com.example.part2.StudentDetailsActivity"/>
     </application>
 

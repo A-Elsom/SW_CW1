@@ -3,6 +3,7 @@ package com.example.part2;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -25,6 +26,15 @@ public class StudentRepository {
         UniversityDB.databaseWriteExecutor.execute(() -> {
             studentDao.insert(student);
         });
+    }
+
+    public LiveData<Long> insertAndGetId(Student student) {
+        final MutableLiveData<Long> insertedId = new MutableLiveData<>();
+        UniversityDB.databaseWriteExecutor.execute(() -> {
+            long id = studentDao.insert(student);
+            insertedId.postValue(id);
+        });
+        return insertedId;
     }
 
     void delete(Student student){

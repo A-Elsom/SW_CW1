@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int CREATE_COURSE_REQUEST_CODE = 1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             Course course = new Course(courseCode, courseName, lecturerName);
             CourseViewModel vm = new ViewModelProvider(this).get(CourseViewModel.class);
             vm.insert(course);
-        } else {
-            Toast.makeText(getApplicationContext(),"This Course Was not saved, likley due to empty fields", Toast.LENGTH_LONG).show();
+        }  else {
+            Toast.makeText(getApplicationContext(),"This action Failed due to an empty field", Toast.LENGTH_LONG).show();
         }
     }
 

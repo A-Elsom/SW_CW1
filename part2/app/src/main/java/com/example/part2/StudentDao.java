@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface StudentDao {
     @Insert
-    void insert(Student student);
+    Long insert(Student student);
 
     @Query("SELECT * FROM students ORDER BY studentId DESC")
     LiveData<List<Student>> getStudentList();

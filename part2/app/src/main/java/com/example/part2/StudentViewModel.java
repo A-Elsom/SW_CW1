@@ -23,5 +23,9 @@ public class StudentViewModel extends AndroidViewModel {
 
     public void insert(Student student) {repo.insert(student);}
 
+    public LiveData<Long> insertAndGetId(Student student) {
+        return repo.insertAndGetId(student);
+    }
+
     public void delete(Student student) {repo.delete(student);}
 }
