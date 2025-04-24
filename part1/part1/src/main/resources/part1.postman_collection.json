@@ -17,7 +17,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"List All Appointments, No Appointments found\", function (){",
-									"    pm.response.to.have.status(400);",
+									"    pm.response.to.have.status(204);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -104,7 +104,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Could not create new Appointment, appointment already exists\", function (){",
-									"    pm.response.to.have.status(400);",
+									"    pm.response.to.have.status(409);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -295,7 +295,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Appointment not Found\", function (){",
-									"    pm.response.to.have.status(400);",
+									"    pm.response.to.have.status(404);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -524,7 +524,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Appointment Has Been Deleted\", function (){",
-									"    pm.response.to.have.status(204);",
+									"    pm.response.to.have.status(200);",
 									"});"
 								],
 								"type": "text/javascript",
