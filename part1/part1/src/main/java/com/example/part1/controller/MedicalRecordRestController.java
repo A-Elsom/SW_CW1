@@ -6,6 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.part1.domain.Appointments;
+import com.example.part1.domain.Record;
+import com.example.part1.repo.AppointmentRepo;
 
 @RestController
 public class MedicalRecordRestController {
@@ -15,7 +18,7 @@ public class MedicalRecordRestController {
     @PostMapping("/medical-records")
     public ResponseEntity<?> createMedicalRecord(@RequestBody Record record) {
         Long appointmentId = record.getAppointmentId();
-        Appointments appointment = appointmentRepo.findById(appointmentId).orElse(null);
+        Appointments appointment = repo.findById(appointmentId).orElse(null);
 
         if (appointment == null) {
             return new ResponseEntity<>("Appointment not found", HttpStatus.NOT_FOUND);
@@ -23,8 +26,8 @@ public class MedicalRecordRestController {
 
         appointment.setRecord(record);
 
-        appointmentRepo.save(appointment);
+        repo.save(appointment);
 
-        return new ResponseEntity<>(record, HttpStatus.OK)
+        return new ResponseEntity<>(record, HttpStatus.OK);
     }
 }
